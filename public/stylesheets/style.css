@@ -1,0 +1,56 @@
+html, body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #FAFAFA;
+  margin: 0;
+}
+a {
+  color: #00B7FF;
+}
+a:link,
+a:visited,
+#issuetable td.issuekey a,
+#issuetable td.summary a,
+#issuetable td.stsummary a {
+  color: #3C78B5;
+}
+#header {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+#top {
+  background: #E5E9EA;
+  margin: 0 auto;
+  width: 400px;
+  padding: 10px;
+}
+#wrapper {
+  background: #fff;
+  margin: 0 auto;
+  width: 400px;
+  padding: 10px;
+}
+#footer {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+button:hover {
+  background: #eef;
+  cursor: pointer;
+}
+button {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border: 1px solid #aaaaaa;
+  padding: 2px 6px;
+  width: 120px;
+}
+.body {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border: 1px solid #aaaaaa;
+  padding: 2px 10px;
+}

@@ -1,0 +1,41 @@
+<script>
+$(document).ready(function() {
+
+
+
+$("#send-button").click(function(){
+	now.distributeMessage($("#text-input").val());
+	$("#text-input").val("");
+});
+
+now.receiveMessage = function(name, message){
+  $("#messages").val(message);
+};
+
+
+
+$('#text-input').keypress(function(event) {
+
+	if (event.which == '13') {//enter
+		now.distributeMessage($("#text-input").val());
+	}
+	else if (event.which == '8') {//backspace
+		now.distributeMessage($("#text-input").val());
+	}
+	now.distributeMessage($("#text-input").val());
+});
+
+
+});
+</script>
+
+<br>
+
+
+<div>
+	<textarea id="messages">&nbsp;</textarea>
+	<br>
+	<input id="text-input" name="text-input" type="text" value="" />
+	<br>
+	<button id="send-button" name="send-button">Send</button>
+</div>

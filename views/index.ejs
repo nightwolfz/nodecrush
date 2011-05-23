@@ -1,0 +1,18 @@
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+
+<div class="body">
+    <p>Session <%= sess %></p>
+    
+    <button>Test</button>
+    
+    <p>
+        <ul>
+        <% for(var i=0; i<t.favorites.length; i++) {%>
+           <li><%= t.favorites[i] %></li>
+        <% } %>
+        </ul>
+    </p>
+    <p><%= t.messages %></p>
+    <p><%= t.alerts %></p>
+</div>
