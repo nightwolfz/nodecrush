@@ -9,6 +9,13 @@ html, body {
 a {color: #00B7FF;}
 a:hover {text-decoration:none;}
 
+h1 {
+	text-shadow:1px 1px 4px #999;
+	padding:4px 2px 2px 2px;
+	margin:4px 2px 2px 2px;
+}
+hr {height:1px;border:0;background:#ccc;color:#ccc;}
+form {margin:0;border:0;}
 
 .rounded-corners (@radius:3px) {
   border-radius: @radius;
@@ -33,6 +40,12 @@ color: #3C78B5;
     margin: 0 auto;
     width: (@sitewidth - 20px);
     padding:10px;
+    input {
+    	width:120px;
+    	border:1px solid #aaa;
+    	padding:2px;
+    	.rounded-corners;
+    }
     .top-menu {
     	padding:0;
     	margin:0;
@@ -59,10 +72,17 @@ color: #3C78B5;
 }
 button:hover {background: #eef;cursor:pointer;}
 button {
-  .rounded-corners;
-  .has-border;
   padding: 2px 6px;
   width: 120px;
+	color: #050505;
+	background: -moz-linear-gradient(top,#ffffff 0%,#ebebeb 50%,#cccacc);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),color-stop(0.50, #ebebeb),to(#cccacc));
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #c7c3c7;
+	-moz-box-shadow:0px 1px 3px rgba(000,000,000,0.5),inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:0px 1px 3px rgba(000,000,000,0.5),inset 0px 0px 2px rgba(255,255,255,1);
 }
 .body {
   .rounded-corners;

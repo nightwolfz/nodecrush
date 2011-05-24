@@ -11,6 +11,21 @@ a {
 a:hover {
   text-decoration: none;
 }
+h1 {
+  text-shadow: 1px 1px 4px #999;
+  padding: 4px 2px 2px 2px;
+  margin: 4px 2px 2px 2px;
+}
+hr {
+  height: 1px;
+  border: 0;
+  background: #ccc;
+  color: #ccc;
+}
+form {
+  margin: 0;
+  border: 0;
+}
 a:link,
 a:visited,
 #issuetable td.issuekey a,
@@ -28,6 +43,14 @@ a:visited,
   margin: 0 auto;
   width: 380px;
   padding: 10px;
+}
+.top input {
+  width: 120px;
+  border: 1px solid #aaa;
+  padding: 2px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
 }
 .top .top-menu {
   padding: 0;
@@ -61,12 +84,17 @@ button:hover {
   cursor: pointer;
 }
 button {
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border: 1px solid #aaaaaa;
   padding: 2px 6px;
   width: 120px;
+  color: #050505;
+  background: -moz-linear-gradient(top, #ffffff 0%, #ebebeb 50%, #cccacc);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(0.5, #ebebeb), to(#cccacc));
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #c7c3c7;
+  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 0px 2px #ffffff;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 0px 2px #ffffff;
 }
 .body {
   border-radius: 3px;

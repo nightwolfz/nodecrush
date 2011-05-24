@@ -9,7 +9,7 @@ app.get('/', function(req, res){
     t.messages = checkMessages();
     t.alerts = checkAlerts();
     
-    res.render('index', { title: 'Express', sess: user.name, t : t });
+    res.render('index', { req:req, sess: user.name, t : t });
 });
 
 

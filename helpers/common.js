@@ -81,13 +81,14 @@ module.exports = function(app, sequelize, Account, Profile) {
     }
     
     getProfile = function(username){
-    	var profile = profiles[username];
-    	return profile;
-    	/*Account.find({ where: {username: username} }).on('success', function(account) {
-        	Profile.find({ where: {AccountId: account.id} }).on('success', function(profile) {
-        		return {};
-        	});
-        });*/
+    	
+    	var result =    	
+	    	Account.find({ where: {username: username} }).on('success', function(account) {
+	        	Profile.find({ where: {AccountId: account.id} }).on('success', function(profile) {
+	        		return profile;
+	        	});
+	        });
+        return result;
     }
     getMail = function(who){
     	var mail = mails.find(who);
