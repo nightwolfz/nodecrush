@@ -31,13 +31,59 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-// Common
-require('./common.js')(app, everyone);
-// Models
-require('./models.js')(app, everyone);
+/*================================
+ * Common
+ *================================*/
+require('./helpers/common.js')(app, everyone);
 
-// Controllers
+/*================================
+ * Models
+ *================================*/
+var Account = sequelize.define('Account', {
+	username: Sequelize.STRING,
+	password: Sequelize.STRING,
+	email: Sequelize.STRING
+});
+
+var Profile = sequelize.define('Profile', {
+	firstName: Sequelize.STRING,
+	lastName: Sequelize.STRING,
+	gender: {type: Sequelize.INTEGER, defaultValue: 0},
+	birthday: Sequelize.DATE,
+	aboutMe: Sequelize.TEXT,
+	likes: Sequelize.TEXT,
+	msgIf: Sequelize.TEXT
+});
+
+var Message = sequelize.define('Message', {
+	subject: Sequelize.STRING,
+	who: Sequelize.STRING,
+	with: Sequelize.STRING,
+	content: Sequelize.TEXT
+});
+
+Account.hasOne(Profile);
+Profile.hasMany(Message);
+Account.sync();
+Profile.sync();
+
+/*================================
+ * Controllers
+ *================================*/
 require('./index.js')(app, everyone);
+require('./show.js')(app, everyone);
+require('./mail.js')(app, everyone);
+require('./editprofile.js')(app, everyone);
+
+
+
+
+
+
+
+/*================================
+ * Interview
+ *================================*/
 
 /**
  * Interview
