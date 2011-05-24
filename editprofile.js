@@ -1,4 +1,4 @@
-module.exports = function(app, everyone) {
+module.exports = function(app, sequelize, Account, Profile) {
 
 app.get('/edit/profile', function(req, res){
     var session = req.session, t = [], user = [];

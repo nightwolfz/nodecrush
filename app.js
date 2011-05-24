@@ -5,9 +5,8 @@
 
 var express = require('express');
 var app = module.exports = express.createServer();
-var nowjs = require('now');
-var everyone = nowjs.initialize(app);
-var sequelize = new Sequelize('database', 'root', null);
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('nodecrush', 'root', null);
 
 // Configuration
 
@@ -24,17 +23,14 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+  app.use(express.errorHandler({ 
+	  dumpExceptions: true, showStack: true 
+  })); 
 });
 
 app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
-
-/*================================
- * Common
- *================================*/
-require('./helpers/common.js')(app, everyone);
 
 /*================================
  * Models
@@ -49,6 +45,8 @@ var Profile = sequelize.define('Profile', {
 	firstName: Sequelize.STRING,
 	lastName: Sequelize.STRING,
 	gender: {type: Sequelize.INTEGER, defaultValue: 0},
+	ori: {type: Sequelize.INTEGER, defaultValue: 0},
+	relation: {type: Sequelize.INTEGER, defaultValue: 0},
 	birthday: Sequelize.DATE,
 	aboutMe: Sequelize.TEXT,
 	likes: Sequelize.TEXT,
@@ -62,44 +60,46 @@ var Message = sequelize.define('Message', {
 	content: Sequelize.TEXT
 });
 
+var Picture = sequelize.define('Picture', {
+	src: Sequelize.STRING
+});
+
+var Comment = sequelize.define('Comment', {
+	username: Sequelize.STRING,
+	content: Sequelize.TEXT
+});
+
 Account.hasOne(Profile);
 Profile.hasMany(Message);
-Account.sync();
-Profile.sync();
+Profile.hasMany(Picture);
+Picture.hasMany(Comment);
+Account.sync();Profile.sync();Picture.sync();
+
+
+/*
+You can put some local variables
+to be used in all templates
+*/
+app.use(function(req,res,next){
+  req.local = new Object;
+  req.local = req.session;
+  next();
+});
+
 
 /*================================
  * Controllers
  *================================*/
-require('./index.js')(app, everyone);
-require('./show.js')(app, everyone);
-require('./mail.js')(app, everyone);
-require('./editprofile.js')(app, everyone);
-
-
-
-
-
-
-
+require('./index.js')(app, sequelize, Account, Profile);
+require('./showprofile.js')(app, sequelize, Account, Profile);
+require('./mail.js')(app, sequelize, Account, Profile);
+require('./editprofile.js')(app, sequelize, Account, Profile);
 /*================================
- * Interview
+ * Common
  *================================*/
+require('./helpers/common.js')(app, sequelize, Account, Profile);
 
-/**
- * Interview
- */
-app.get('/test', function(req, res){
-    var session = req.session;
-    session.username = 'Testname';
-    
-    everyone.now.distributeMessage = function(message){
-    	  everyone.now.receiveMessage('Guest', message);
-    	//everyone.now.receiveMessage(this.now.name, message);
-	};
 
-    res.render('test', { session:session });
-
-});
 
 
 if (!module.parent) {

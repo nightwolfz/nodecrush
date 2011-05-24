@@ -1,4 +1,4 @@
-module.exports = function(app, everyone) {
+module.exports = function(app, sequelize, Account, Profile) {
     
 	var profiles = {
 			"nightwolfz":{
@@ -23,15 +23,44 @@ module.exports = function(app, everyone) {
 			},
 	};
 	
-	var mails = [
-			[
+	var mails = {
+			1:{
 				subject: "Hey there",
 				who: "nightwolfz",
 				with: "xerios",
 				content: "content of the mail"
-			]
-	];
+			}
+	};
 	
+	getOrientation = function(ori, gender){
+		if (ori == 1) return 'Bisexual';
+		if (ori == 2) return (gender == 0) ? 'Gay' : 'Lesbian';
+		return 'Straight';
+	}
+	getRelation = function(relation){
+		if (relation == 0) return 'Single';
+		if (relation == 1) return 'Taken';
+		if (relation == 2) return 'Married';
+		if (relation == 3) return 'Divorced';
+		if (relation == 4) return 'Window';
+		if (relation == 5) return 'In doubt';
+	}
+	getAge = function(birthDate) {
+		var now = new Date();
+		function isLeap(year) {
+			return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+		}   
+		var days = Math.floor((now.getTime() - birthDate.getTime())/1000/60/60/24);
+		var age = 0;
+		for (var y = birthDate.getFullYear(); y <= now.getFullYear(); y++){
+			var daysInYear = isLeap(y) ? 366 : 365;
+			if (days >= daysInYear){
+				days -= daysInYear;
+				age++;
+			}
+		}
+		return age;
+	}
 	
 	
     getUsername = function(req){
@@ -54,9 +83,14 @@ module.exports = function(app, everyone) {
     getProfile = function(username){
     	var profile = profiles[username];
     	return profile;
+    	/*Account.find({ where: {username: username} }).on('success', function(account) {
+        	Profile.find({ where: {AccountId: account.id} }).on('success', function(profile) {
+        		return {};
+        	});
+        });*/
     }
     getMail = function(who){
-    	var mail = mails.find, who);
+    	var mail = mails.find(who);
     	return mail;
     }
     
