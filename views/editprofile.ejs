@@ -1,14 +1,33 @@
-<h1><%= title %></h1>
-
-<div id="body">
-    <p>Editing : <%= sess.username %></p>
-
-    <p>
-        <ul>
-           <li><label>Name :</label> <input type="text" id="p[lastname]" name="p[lastname]" value="">
-           <%=name%></li>
-           <li><label>Surname :</label> <input type="text" id="p[firstname]" name="p[firstname]" value="">
-           <%=surname%></li>
-        </ul>
-    </p>
+<div id="main">
+	<%-partial('loginForm', {req:req}) %>
+	<h1><%= account.username %>'s profile.</h1>
+	
+	<div id="body">    
+	    <p>
+	    	<%=getAge(profile.birthday)%> / <%= profile.gender ? "F" : "M" %> / <%=getOrientation(profile.ori,profile.gender) %> / 
+	    	<%=getRelation(profile.relation) %> / 
+	    	<%=profile.city %> (<%=profile.country %>)
+    	</p>
+	    <p>
+	        <ul class="profile-stats">
+	           <li><label>Name :</label> <%=profile.lastName%></li>
+	           <li><label>Surname :</label> <%=profile.firstName%></li>
+	        </ul>
+	    </p>
+	    
+	    <h3>Short description</h3>
+	    <p class="desc">
+	    	<%=profile.aboutMe%>
+	    </p>
+	    
+	    <h3>Name a few of your favorite things</h3>
+	    <p class="desc">
+	    	<%=profile.likes%>
+	    </p>
+	    
+	    <h3>Message me if</h3>
+	    <p class="desc">
+	    	<%=profile.msgIf%>
+	    </p>
+	</div>
 </div>

@@ -84,17 +84,19 @@ button:hover {
   cursor: pointer;
 }
 button {
-  padding: 2px 6px;
   width: 120px;
-  color: #050505;
-  background: -moz-linear-gradient(top, #ffffff 0%, #ebebeb 50%, #cccacc);
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(0.5, #ebebeb), to(#cccacc));
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border: 1px solid #c7c3c7;
-  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 0px 2px #ffffff;
-  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5), inset 0px 0px 2px #ffffff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #272727;
+  padding: 3px 8px;
+  background: -moz-linear-gradient(top, #ffffff 0%, #dfdfdf);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dfdfdf));
+  border: 1px solid #6e6e6e;
+  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 1px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3), inset 0px 0px 1px rgba(255, 255, 255, 0.5);
 }
 .body {
   border-radius: 3px;

@@ -79,7 +79,11 @@ module.exports = function(app, sequelize, Account, Profile) {
         var countAlerts = 7;
         return "You have "+countAlerts+" alert(s).";
     }
-    
+    getAccount = function(username){
+    	return Account.find({ where: {username: username} }).on('success', function(account) {
+				return account;
+	    });
+    }
     getProfile = function(username){
     	
     	var result =    	

@@ -73,7 +73,7 @@ Account.hasOne(Profile);
 Profile.hasMany(Message);
 Profile.hasMany(Picture);
 Picture.hasMany(Comment);
-Account.sync();Profile.sync();Picture.sync();
+//Account.sync();Profile.sync();Picture.sync();
 
 
 /*
@@ -82,7 +82,6 @@ to be used in all templates
 */
 app.use(function(req,res,next){
   req.local = new Object;
-  req.local = req.session;
   next();
 });
 
